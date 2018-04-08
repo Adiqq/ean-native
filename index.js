@@ -22,3 +22,11 @@ lsa.addPoint(p2);
 lsa.addPoint(p3);
 console.log(lsa.calculateA0());
 console.log(lsa.calculateA1());
+
+const ip1 = new m.IntervalPoint(1, 1);
+const ip2 = new m.IntervalPoint(2.43, 2.43);
+
+console.log(ip2.getLowerX());
+console.log(ip2.getUpperX());
+console.log(ip2.getLowerY());
+console.log(ip2.getUpperY());

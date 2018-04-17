@@ -1,4 +1,5 @@
 #include "Lsa.h"
+#include <cmath>
 
 Nan::Persistent<v8::FunctionTemplate> Lsa::constructor;
 
@@ -47,8 +48,18 @@ NAN_METHOD(Lsa::CalculateA0) {
   Lsa * self = Nan::ObjectWrap::Unwrap<Lsa>(info.This());
 
   double count = self->points.size();
-  v8::Local<v8::Number> countLocal = Nan::New(count);
-  info.GetReturnValue().Set(countLocal);
+  double x_square_sum = 0.0;
+  double y_sum = 0.0;
+  double x_y_sum = 0.0;
+  double x_sum = 0.0;
+  for(Point *point : self->points){
+    x_square_sum += pow(point->x , 2);
+    y_sum += point->y;
+    x_y_sum += point->x * point->y;
+    x_sum += point->x;
+  }
+  double a0 = (x_square_sum*y_sum - x_y_sum * x_sum) / (count * x_square_sum - pow(x_sum , 2));
+  info.GetReturnValue().Set(a0);
 }
 
 NAN_METHOD(Lsa::CalculateA1) {
@@ -56,6 +67,16 @@ NAN_METHOD(Lsa::CalculateA1) {
   Lsa * self = Nan::ObjectWrap::Unwrap<Lsa>(info.This());
 
   double count = self->points.size();
-  v8::Local<v8::Number> countLocal = Nan::New(count);
-  info.GetReturnValue().Set(countLocal);
+  double x_square_sum = 0.0;
+  double y_sum = 0.0;
+  double x_y_sum = 0.0;
+  double x_sum = 0.0;
+  for(Point *point : self->points){
+    x_square_sum += pow(point->x , 2);
+    y_sum += point->y;
+    x_y_sum += point->x * point->y;
+    x_sum += point->x;
+  }
+  double a1 = (count * x_y_sum - x_sum * y_sum) / (count * x_square_sum - pow(x_sum , 2));
+  info.GetReturnValue().Set(a1);
 }

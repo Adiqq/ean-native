@@ -12,14 +12,23 @@ console.log(vec2) // Vector { x: 30, y: 0, z: 100 }
 const vecSum = vec1.add(vec2)
 console.log(vecSum) // Vector { x: 50, y: 10, z: 100 }
 
-const p1 = new m.Point(1, 1)
-const p2 = new m.Point(2, 2)
-const p3 = new m.Point(3, 3)
+const points = [
+    new m.Point(1, 1.3),
+    new m.Point(2, 3.5),
+    new m.Point(3, 4.2),
+    new m.Point(4, 5.0),
+    new m.Point(5, 7.0),
+    new m.Point(6, 8.8),
+    new m.Point(7, 10.1),
+    new m.Point(8, 12.5),
+    new m.Point(9, 13.0),
+    new m.Point(10, 15.6)
+]
 
 const lsa = new m.Lsa()
-lsa.addPoint(p1);
-lsa.addPoint(p2);
-lsa.addPoint(p3);
+for (var i = 0; i < points.length; i++) {
+    lsa.addPoint(points[i]);
+}
 console.log(lsa.calculateA0());
 console.log(lsa.calculateA1());
 

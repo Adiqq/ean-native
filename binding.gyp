@@ -13,6 +13,13 @@
       "src/Point.cc",
       "src/Lsa.cc",
       "src/IntervalPoint.cc"
+    ],
+    "conditions" : [
+      ['OS=="win"', {
+        'include_dirs' : [
+          'C:\\Program Files\\boost\\boost_1_67_0'
+        ]
+      }]
     ]
   }]
 }

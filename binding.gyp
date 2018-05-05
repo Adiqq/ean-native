@@ -12,7 +12,8 @@
       "src/Vector.cc",
       "src/Point.cc",
       "src/Lsa.cc",
-      "src/IntervalPoint.cc"
+      "src/IntervalPoint.cc",
+      "src/PointFactory.cc"
     ],
     "conditions" : [
       ['OS=="win"', {

@@ -4,7 +4,7 @@
 #include <Point.h>
 class PointStrategy {
 public:
-  virtual std::vector<Point> getPoints(int n, double min, double max) = 0;
+  virtual std::vector<Point*> getPoints(int n, double min, double max) = 0;
 };
 
 #endif

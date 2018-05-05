@@ -39,3 +39,8 @@ console.log(ip2.getLowerX());
 console.log(ip2.getUpperX());
 console.log(ip2.getLowerY());
 console.log(ip2.getUpperY());
+
+const factory = new m.PointFactory("RPS");
+console.log(factory);
+const randomPoints = factory.generatePoints(100, 1, 100);
+console.log(randomPoints);

@@ -9,6 +9,8 @@ NAN_MODULE_INIT(PointFactory::Init) {
   ctor->InstanceTemplate()->SetInternalFieldCount(1);
   ctor->SetClassName(Nan::New("PointFactory").ToLocalChecked());
 
+    Nan::SetPrototypeMethod(ctor, "generatePoints", GeneratePoints);
+
   target->Set(Nan::New("PointFactory").ToLocalChecked(), ctor->GetFunction());
 }
 
@@ -54,12 +56,29 @@ NAN_METHOD(PointFactory::GeneratePoints) {
   Nan::Maybe<double> min = Nan::To<double>(info[1]);
   Nan::Maybe<double> max = Nan::To<double>(info[2]);
 
-  std::vector<Point>  points = self->strategy->getPoints(n.FromJust(), min.FromJust(), max.FromJust());
+  std::vector<Point*>  points = self->strategy->getPoints(n.FromJust(), min.FromJust(), max.FromJust());
 
   v8::Isolate *isolate = info.GetIsolate();
   v8::Handle<v8::Array> array = v8::Array::New(isolate, points.size());
   for(int i = 0; i < points.size(); i++){
-    array->Set(i, *points[i]->_handle);
+    // get FunctionTemplate from persistent object
+    v8::Local<v8::FunctionTemplate> tpl = Nan::New(Point::constructor);
+
+    // get function from template
+    v8::Local<v8::Function> cons = tpl->GetFunction();
+
+    const int argc = 2;
+    v8::Local<v8::Value> argv[argc] = {
+      Nan::New(points[i]->x),
+      Nan::New(points[i]->y)
+    };
+    // create new instance in the current context
+    v8::MaybeLocal<v8::Object> instance = cons->NewInstance(
+        isolate->GetCurrentContext(), argc, argv);
+
+    // use as Local<Object>
+    v8::Local<v8::Object> obj = instance.ToLocalChecked();
+    array->Set(i, obj);
   }
   info.GetReturnValue().Set(array);
 }

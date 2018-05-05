@@ -7,7 +7,7 @@ class Point : public Nan::ObjectWrap {
 public:
   double x;
   double y;
-
+  
   static NAN_MODULE_INIT(Init);
   static NAN_METHOD(New);
 

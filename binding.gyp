@@ -13,7 +13,8 @@
       "src/Point.cc",
       "src/Lsa.cc",
       "src/IntervalPoint.cc",
-      "src/PointFactory.cc"
+      "src/PointFactory.cc",
+      "src/RandomPointStrategy.cc"
     ],
     "conditions" : [
       ['OS=="win"', {

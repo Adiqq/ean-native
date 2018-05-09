@@ -1,5 +1,6 @@
 #include "PointFactory.h"
 #include "RandomPointStrategy.h"
+#include "SinStrategy.h"
 
 Nan::Persistent<v8::FunctionTemplate> PointFactory::constructor;
 
@@ -44,6 +45,9 @@ NAN_METHOD(PointFactory::New) {
   // initialize it's values
   if(strategyName == "RPS"){
     factory->strategy = new RandomPointStrategy(); 
+  }
+  if(strategyName == "sin"){
+    factory->strategy = new SinStrategy();
   }
 
   // return the wrapped javascript instance

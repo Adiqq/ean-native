@@ -1,6 +1,6 @@
 {
   "name": "ean-native",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "bindings.js",
   "scripts": {
     "build": "node-gyp build",

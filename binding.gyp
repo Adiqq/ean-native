@@ -15,7 +15,8 @@
       "src/LsaInterval.cc",
       "src/IntervalPoint.cc",
       "src/PointFactory.cc",
-      "src/RandomPointStrategy.cc"
+      "src/RandomPointStrategy.cc",
+      "src/SinStrategy.cc"
     ],
     "conditions" : [
       ['OS=="win"', {

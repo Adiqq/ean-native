@@ -66,3 +66,8 @@ lsaInterval2.addPoint(ip2);
 console.log("calculateA0:", lsaInterval2.calculateA0());
 console.log("calculateA1:", lsaInterval2.calculateA1());
 console.log("Result:", lsaInterval2.getResult());
+
+const sinfactory = new m.PointFactory("sin", "");
+console.log(sinfactory);
+const sinpoints = sinfactory.generatePoints(30, 1, 100);
+console.log(sinpoints);

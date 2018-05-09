@@ -52,9 +52,9 @@ NAN_GETTER(IntervalPoint::HandleGetters) {
 
   std::string propertyName = std::string(*Nan::Utf8String(property));
   if (propertyName == "x") {
-    info.GetReturnValue().Set(self->x.lower());
+    info.GetReturnValue().Set(self->x.upper());
   } else if (propertyName == "y") {
-    info.GetReturnValue().Set(self->y.lower());
+    info.GetReturnValue().Set(self->y.upper());
   } else {
     info.GetReturnValue().Set(Nan::Undefined());
   }

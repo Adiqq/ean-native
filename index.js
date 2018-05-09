@@ -40,7 +40,13 @@ console.log(ip2.getUpperX());
 console.log(ip2.getLowerY());
 console.log(ip2.getUpperY());
 
-const factory = new m.PointFactory("RPS");
+const factory = new m.PointFactory("RPS", "");
 console.log(factory);
-const randomPoints = factory.generatePoints(100, 1, 100);
+const randomPoints = factory.generatePoints(10, 1, 100);
 console.log(randomPoints);
+
+const intervalFactory = new m.PointFactory("RPS", "interval");
+console.log(intervalFactory);
+const randomIntervalPoints = intervalFactory.generatePoints(10, 1, 100);
+console.log(randomIntervalPoints);
+

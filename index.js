@@ -49,6 +49,7 @@ for (var i = 0; i < randomPoints.length; i++) {
 }
 console.log(lsa.calculateA0());
 console.log(lsa.calculateA1());
+console.log("lsa error: ", lsa.getError());
 
 const lsaInterval = new m.LsaInterval()
 for (var i = 0; i < randomIntervalPoints.length; i++) {
@@ -57,3 +58,11 @@ for (var i = 0; i < randomIntervalPoints.length; i++) {
 
 console.log(lsaInterval.calculateA0());
 console.log(lsaInterval.calculateA1());
+console.log("Error:", lsaInterval.getError());
+
+const lsaInterval2 = new m.LsaInterval();
+lsaInterval2.addPoint(ip1);
+lsaInterval2.addPoint(ip2);
+console.log("calculateA0:", lsaInterval2.calculateA0());
+console.log("calculateA1:", lsaInterval2.calculateA1());
+console.log("Result:", lsaInterval2.getResult());

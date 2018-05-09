@@ -12,6 +12,7 @@ NAN_MODULE_INIT(Lsa::Init) {
   Nan::SetPrototypeMethod(ctor, "addPoint", AddPoint);
   Nan::SetPrototypeMethod(ctor, "calculateA0", CalculateA0);
   Nan::SetPrototypeMethod(ctor, "calculateA1", CalculateA1);
+  Nan::SetPrototypeMethod(ctor, "getError", GetError);
 
   target->Set(Nan::New("Lsa").ToLocalChecked(), ctor->GetFunction());
 }
@@ -80,3 +81,31 @@ NAN_METHOD(Lsa::CalculateA1) {
   double a1 = (count * x_y_sum - x_sum * y_sum) / (count * x_square_sum - pow(x_sum , 2));
   info.GetReturnValue().Set(a1);
 }
+
+NAN_METHOD(Lsa::GetError) {
+  // unwrap this Lsa
+  Lsa * self = Nan::ObjectWrap::Unwrap<Lsa>(info.This());
+
+  int count = self->points.size();
+  double x_square_sum = 0.0;
+  double y_sum = 0.0;
+  double x_y_sum = 0.0;
+  double x_sum = 0.0;
+  for(Point *point : self->points){
+    x_square_sum += pow(point->x , 2);
+    y_sum += point->y;
+    x_y_sum += point->x * point->y;
+    x_sum += point->x;
+  }
+  double a0 = (x_square_sum*y_sum - x_y_sum * x_sum) / (count * x_square_sum - pow(x_sum , 2));
+  double a1 = (count * x_y_sum - x_sum * y_sum) / (count * x_square_sum - pow(x_sum , 2));
+
+  double error = 0.0;
+  for(auto i = 0; i < count; i++){
+    Point *point = self->points[i];
+    error += pow(point->y - (a1*point->x + a0), 2);
+  }
+
+  info.GetReturnValue().Set(error);
+}
+

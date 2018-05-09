@@ -13,6 +13,8 @@ public:
   static NAN_METHOD(AddPoint);
   static NAN_METHOD(CalculateA0);
   static NAN_METHOD(CalculateA1);
+  static NAN_METHOD(GetResult);
+  static NAN_METHOD(GetError);
 
   static Nan::Persistent<v8::FunctionTemplate> constructor;
 };

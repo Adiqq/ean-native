@@ -12,6 +12,7 @@
       "src/Vector.cc",
       "src/Point.cc",
       "src/Lsa.cc",
+      "src/LsaInterval.cc",
       "src/IntervalPoint.cc",
       "src/PointFactory.cc",
       "src/RandomPointStrategy.cc"

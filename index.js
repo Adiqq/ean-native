@@ -25,13 +25,6 @@ const points = [
     new m.Point(10, 15.6)
 ]
 
-const lsa = new m.Lsa()
-for (var i = 0; i < points.length; i++) {
-    lsa.addPoint(points[i]);
-}
-console.log(lsa.calculateA0());
-console.log(lsa.calculateA1());
-
 const ip1 = new m.IntervalPoint(1, 1);
 const ip2 = new m.IntervalPoint(2.43, 2.43);
 
@@ -42,11 +35,25 @@ console.log(ip2.getUpperY());
 
 const factory = new m.PointFactory("RPS", "");
 console.log(factory);
-const randomPoints = factory.generatePoints(10, 1, 100);
+const randomPoints = factory.generatePoints(1000, 1, 100);
 console.log(randomPoints);
 
 const intervalFactory = new m.PointFactory("RPS", "interval");
 console.log(intervalFactory);
-const randomIntervalPoints = intervalFactory.generatePoints(10, 1, 100);
+const randomIntervalPoints = intervalFactory.generatePoints(1000, 1, 100);
 console.log(randomIntervalPoints);
 
+const lsa = new m.Lsa()
+for (var i = 0; i < randomPoints.length; i++) {
+    lsa.addPoint(randomPoints[i]);
+}
+console.log(lsa.calculateA0());
+console.log(lsa.calculateA1());
+
+const lsaInterval = new m.LsaInterval()
+for (var i = 0; i < randomIntervalPoints.length; i++) {
+    lsaInterval.addPoint(randomIntervalPoints[i]);
+}
+
+console.log(lsaInterval.calculateA0());
+console.log(lsaInterval.calculateA1());

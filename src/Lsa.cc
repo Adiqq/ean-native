@@ -47,7 +47,7 @@ NAN_METHOD(Lsa::CalculateA0) {
   // unwrap this Lsa
   Lsa * self = Nan::ObjectWrap::Unwrap<Lsa>(info.This());
 
-  double count = self->points.size();
+  int count = self->points.size();
   double x_square_sum = 0.0;
   double y_sum = 0.0;
   double x_y_sum = 0.0;
@@ -66,7 +66,7 @@ NAN_METHOD(Lsa::CalculateA1) {
   // unwrap this Lsa
   Lsa * self = Nan::ObjectWrap::Unwrap<Lsa>(info.This());
 
-  double count = self->points.size();
+  int count = self->points.size();
   double x_square_sum = 0.0;
   double y_sum = 0.0;
   double x_y_sum = 0.0;

@@ -65,7 +65,7 @@ NAN_METHOD(PointFactory::GeneratePoints) {
     std::vector<IntervalPoint*> intervalPoints = self->strategy->getIntervalPoints(n.FromJust(), min.FromJust(), max.FromJust());
     v8::Isolate *isolate = info.GetIsolate();
     v8::Handle<v8::Array> array = v8::Array::New(isolate, intervalPoints.size());
-    for(uint i = 0; i < intervalPoints.size(); i++){
+    for(auto i = 0; i < intervalPoints.size(); i++){
       // get FunctionTemplate from persistent object
       v8::Local<v8::FunctionTemplate> tpl = Nan::New(IntervalPoint::constructor);
 
@@ -90,7 +90,7 @@ NAN_METHOD(PointFactory::GeneratePoints) {
       std::vector<Point*> points = self->strategy->getPoints(n.FromJust(), min.FromJust(), max.FromJust());
       v8::Isolate *isolate = info.GetIsolate();
       v8::Handle<v8::Array> array = v8::Array::New(isolate, points.size());
-      for(uint i = 0; i < points.size(); i++){
+      for(auto i = 0; i < points.size(); i++){
         // get FunctionTemplate from persistent object
         v8::Local<v8::FunctionTemplate> tpl = Nan::New(Point::constructor);
 
